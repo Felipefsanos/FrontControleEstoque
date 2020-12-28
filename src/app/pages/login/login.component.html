@@ -8,14 +8,31 @@
 <div class="main">
     <div class="col-md-6 col-sm-12">
         <div class="login-form">
-            <form class="d-flex flex-column align-content-center justify-content-center">
+            <form class="d-flex flex-column align-content-center justify-content-center needs-validation"
+                [formGroup]="formulario" (submit)="realizarLogin()" novalidate>
                 <div class="form-group mb-3 mx-3">
-                    <input type="text" class="form-control" placeholder="Usuário">
+                    <input type="text" class="form-control"
+                        [ngClass]="{ 'is-invalid' : !loginControl.valid && (loginControl.dirty || loginControl.touched), 'is-valid' :  loginControl.valid }"
+                        placeholder="Usuário" formControlName="login">
+                    <div class="invalid-feedback" *ngIf="loginControl.errors?.required">
+                        Campo obrigatório
+                    </div>
+                    <div class="invalid-feedback" *ngIf="loginControl.errors?.minlength">
+                        Usuário deve ter mais de 8 caracteres
+                    </div>
                 </div>
                 <div class="form-group mb-3 mx-3">
-                    <input type="password" class="form-control" placeholder="Senha">
+                    <input type="password" class="form-control"
+                        [ngClass]="{ 'is-invalid' : !senhaControl.valid && (senhaControl.dirty || senhaControl.touched), 'is-valid' :  senhaControl.valid }"
+                        placeholder="Senha" formControlName="senha">
+                    <div class="invalid-feedback" *ngIf="senhaControl.errors?.required">
+                        Campo obrigatório
+                    </div>
+                    <div class="invalid-feedback" *ngIf="senhaControl.errors?.minlength">
+                        Senha deve ter mais de 8 caracteres
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-black mx-3">Login</button>
+                <button type="submit" [disabled]="formulario.invalid" class="btn btn-black mx-3">Login</button>
             </form>
         </div>
     </div>
