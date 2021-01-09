@@ -1,19 +1,24 @@
-import { TokenModel } from './../../models/login/token.model';
+import { ToastrService } from 'ngx-toastr';
 import { LoginService } from './../../services/login/login.service';
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { HttpResponse } from '@angular/common/http';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TokenModel } from 'src/app/models/login/token.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  providers: [ToastrService]
 })
 export class LoginComponent implements OnInit {
 
   formulario: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private loginService: LoginService) { }
+  constructor(private formBuilder: FormBuilder,
+              private loginService: LoginService,
+              private toastrService: ToastrService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.construirFormulario();
@@ -27,16 +32,16 @@ export class LoginComponent implements OnInit {
   }
 
   realizarLogin(): void {
-    debugger;
     if (this.formulario.invalid) {
       return;
     }
 
     this.loginService.login(this.formulario.value)
-      .subscribe(resp => {
-        console.log(resp);
-        debugger;
-      });
+    .subscribe((resp: TokenModel) => {
+        this.loginService.saveToken(resp);
+        this.toastrService.info('Usuário Logado');
+        this.router.navigate(['p/home']);
+     });
 
   }
 

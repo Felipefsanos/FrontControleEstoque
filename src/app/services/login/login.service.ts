@@ -4,6 +4,7 @@ import { LoginCommand } from './../../models/login/commands/login-command.model'
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BaseService } from '../base/base-service';
+import { AES } from 'crypto-ts';
 
 @Injectable({
   providedIn: 'root'
@@ -17,4 +18,20 @@ export class LoginService extends BaseService {
   public login(loginCommand: LoginCommand): Observable<TokenModel> {
     return this.post('login', loginCommand);
   }
+
+  public saveToken(token: TokenModel): void {
+    localStorage.setItem('tokenExpiration', token.dataExpiracao.toString());
+    localStorage.setItem('token', AES.encrypt(token.token, this.tokenKey).toString());
+  }
+
+  public getToken(): string {
+    const encriptyToken = localStorage.getItem('token');
+
+    if (!encriptyToken) {
+      return null;
+    }
+
+    return AES.decrypt(encriptyToken, this.tokenKey).toString();
+  }
+
 }
