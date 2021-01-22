@@ -15,10 +15,15 @@ export class LoginComponent implements OnInit {
 
   formulario: FormGroup;
 
+  listaCanetas = [];
+
   constructor(private formBuilder: FormBuilder,
               private loginService: LoginService,
               private toastrService: ToastrService,
-              private router: Router) { }
+              private router: Router) {
+
+                this.listaCanetas.push('');
+               }
 
   ngOnInit(): void {
     this.construirFormulario();

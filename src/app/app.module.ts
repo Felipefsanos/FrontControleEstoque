@@ -12,7 +12,7 @@ import { SharedModule } from './shared/shared.module';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { ErrorInterceptor } from './shared/http/interceptors/error.interceptor';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { NgbDropdown, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdown, NgbModule, NgbNav, NgbNavItem } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -39,7 +39,9 @@ import { NgbDropdown, NgbModule } from '@ng-bootstrap/ng-bootstrap';
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    NgbDropdown
+    NgbDropdown,
+    NgbNavItem,
+    NgbNav
   ],
   bootstrap: [AppComponent]
 })
