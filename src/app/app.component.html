@@ -1,10 +1,10 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">
+<nav *ngIf="showNavBar" class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand animate__animated animate__bounce" href="#">
         <i class="fas fa-box-open"></i>
     </a>
-    <button class="navbar-toggler" type="button" [attr.aria-expanded]="!collapsed" data-target="#navbarSupportedContent"
+    <button class="navbar-toggler" type="button" [attr.aria-expanded]="collapsed" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-label="Toggle navigation" (click)="collapsed = !collapsed">
-        <span class="navbar-toggler-icon"></span>
+        <i class="navbar-icon fas fa-bars"></i>
     </button>
 
     <div class="collapse navbar-collapse" [class.collapse]="collapsed" id="navbarSupportedContent">
@@ -16,14 +16,23 @@
                     </span>
                     Clientes
                 </a>
-                <div ngbDropdownMenu aria-labelledby="navbarDropdown1" class="dropdown-menu">
+                <div ngbDropdownMenu aria-labelledby="navbarDropdown1" class="dropdown-menu animate__animated animate__fadeInDown">
                     <a ngbDropdownItem href="#" (click)="$event.preventDefault()">
                         <span>
-                            <i class="fas fa-plus"></i>
+                            <i class="fas fa-user-plus"></i>
                         </span>
-                        Novo
+                        <span class="combo-text">
+                            Novo
+                        </span>
                     </a>
-                    <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Buscar</a>
+                    <a ngbDropdownItem href="#" (click)="$event.preventDefault()">
+                        <span>
+                            <i class="fas fa-search"></i>
+                        </span>
+                        <span class="combo-text">
+                            Buscar
+                        </span>
+                    </a>
                 </div>
             </li>
             <li class="nav-item" ngbDropdown>
@@ -33,10 +42,31 @@
                     </span>
                     Produtos
                 </a>
-                <div ngbDropdownMenu aria-labelledby="navbarDropdown1" class="dropdown-menu">
-                    <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Novo</a>
-                    <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Buscar</a>
-                    <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Estoque</a>
+                <div ngbDropdownMenu aria-labelledby="navbarDropdown1" class="dropdown-menu animate__animated animate__fadeInDown">
+                    <a ngbDropdownItem href="#" (click)="$event.preventDefault()">
+                        <span>
+                            <i class="fas fa-cart-plus"></i>
+                        </span>
+                        <span class="combo-text">
+                            Novo
+                        </span>
+                    </a>
+                    <a ngbDropdownItem href="#" (click)="$event.preventDefault()">
+                        <span>
+                            <i class="fas fa-search"></i>
+                        </span>
+                        <span class="combo-text">
+                            Buscar
+                        </span>
+                    </a>
+                    <a ngbDropdownItem href="#" (click)="$event.preventDefault()">
+                        <span>
+                            <i class="fas fa-box-open"></i>
+                        </span>
+                        <span class="combo-text">
+                            Estoque
+                        </span>
+                    </a>
                 </div>
             </li>
             <li class="nav-item" ngbDropdown>
@@ -46,11 +76,28 @@
                     </span>
                     Venda
                 </a>
-                <div ngbDropdownMenu aria-labelledby="navbarDropdown1" class="dropdown-menu">
-                    <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Nova</a>
-                    <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Buscar</a>
+                <div ngbDropdownMenu aria-labelledby="navbarDropdown1" class="dropdown-menu animate__animated animate__fadeInDown">
+                    <a ngbDropdownItem href="#" (click)="$event.preventDefault()">
+                        <span>
+                            <i class="fas fa-plus"></i>
+                        </span>
+                        <span class="combo-text">
+                            Nova
+                        </span>
+                    </a>
+                    <a ngbDropdownItem href="#" (click)="$event.preventDefault()">
+                        <span>
+                            <i class="fas fa-search"></i>
+                        </span>
+                        <span class="combo-text">
+                            Buscar
+                        </span>
+                    </a>
                 </div>
             </li>
         </ul>
     </div>
 </nav>
+<section class="container-fluid">
+    <router-outlet></router-outlet>
+</section>

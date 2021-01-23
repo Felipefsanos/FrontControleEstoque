@@ -13,6 +13,7 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { ErrorInterceptor } from './shared/http/interceptors/error.interceptor';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgbDropdown, NgbModule, NgbNav, NgbNavItem } from '@ng-bootstrap/ng-bootstrap';
+import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -39,9 +40,12 @@ import { NgbDropdown, NgbModule, NgbNav, NgbNavItem } from '@ng-bootstrap/ng-boo
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: LocationStrategy, useClass: PathLocationStrategy},
+    Location,
     NgbDropdown,
     NgbNavItem,
-    NgbNav
+    NgbNav,
+
   ],
   bootstrap: [AppComponent]
 })

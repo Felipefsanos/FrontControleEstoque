@@ -7,6 +7,7 @@ nav {
 
     button.navbar-toggler{
         margin-right: 1rem;
+
     }
 
     div.navbar-collapse {
@@ -22,6 +23,10 @@ nav {
 
             a.dropdown-item {
                 color: white;
+
+                span.combo-text {
+                    margin-left: 1rem;
+                }
             }
 
             a.dropdown-item:hover, a.dropdown-item:focus {
@@ -31,4 +36,9 @@ nav {
         }
     }
 
+}
+
+section.container-fluid{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 }
