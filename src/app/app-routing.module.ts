@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { TokenGuard } from './guards/token.guard';
 import { LoginComponent } from './pages/login/login.component';
 
 
@@ -20,7 +21,12 @@ const routes: Routes = [
   },
   {
     path: 'p',
-    loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule)
+    loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule),
+    canActivate: [TokenGuard]
+  },
+  {
+    path: 's',
+    loadChildren: () => import('./shared/shared.module').then(m => m.SharedModule)
   }
 ];
 

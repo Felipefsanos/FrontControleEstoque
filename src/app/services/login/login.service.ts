@@ -34,4 +34,18 @@ export class LoginService extends BaseService {
     return AES.decrypt(encriptyToken, this.tokenKey).toString();
   }
 
+  public tokenExpired(): boolean {
+    const tokenExpiration = localStorage.getItem('tokenExpiration');
+
+    if (!tokenExpiration) {
+      return true;
+    }
+
+    if (Date.parse(tokenExpiration) <= Date.now()) {
+      return true;
+    }
+
+    return false;
+  }
+
 }
