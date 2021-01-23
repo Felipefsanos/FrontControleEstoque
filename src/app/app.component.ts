@@ -14,7 +14,7 @@ export class AppComponent {
 
   constructor(private location: Location, private renderer: Renderer2) {
     location.onUrlChange(() => {
-      this.showNavBar = !location.isCurrentPathEqualTo('/login') && !location.path().startsWith('/s');
+      this.showNavBar = !location.isCurrentPathEqualTo('/login') && location.path().startsWith('/p');
     });
   }
 }
