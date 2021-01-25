@@ -16,7 +16,8 @@
                     </span>
                     Clientes
                 </a>
-                <div ngbDropdownMenu aria-labelledby="navbarDropdown1" class="dropdown-menu animate__animated animate__fadeInDown animate__faster">
+                <div ngbDropdownMenu aria-labelledby="navbarDropdown1"
+                    class="dropdown-menu animate__animated animate__fadeInDown animate__faster">
                     <a ngbDropdownItem href="#" (click)="$event.preventDefault()">
                         <span>
                             <i class="fas fa-user-plus"></i>
@@ -42,7 +43,8 @@
                     </span>
                     Produtos
                 </a>
-                <div ngbDropdownMenu aria-labelledby="navbarDropdown1" class="dropdown-menu animate__animated animate__fadeInDown animate__faster">
+                <div ngbDropdownMenu aria-labelledby="navbarDropdown1"
+                    class="dropdown-menu animate__animated animate__fadeInDown animate__faster">
                     <a ngbDropdownItem href="#" (click)="$event.preventDefault()">
                         <span>
                             <i class="fas fa-cart-plus"></i>
@@ -76,7 +78,8 @@
                     </span>
                     Venda
                 </a>
-                <div ngbDropdownMenu aria-labelledby="navbarDropdown1" class="dropdown-menu animate__animated animate__fadeInDown animate__faster">
+                <div ngbDropdownMenu aria-labelledby="navbarDropdown1"
+                    class="dropdown-menu animate__animated animate__fadeInDown animate__faster">
                     <a ngbDropdownItem href="#" (click)="$event.preventDefault()">
                         <span>
                             <i class="fas fa-plus"></i>
@@ -96,8 +99,21 @@
                 </div>
             </li>
         </ul>
+        <div class="navbar-nav right-navbar-container">
+            <a class="nav-link" href="#" (click)="logout()">
+                <span>
+                    <i class="fas fa-sign-out-alt"></i>
+                </span>
+                <span class="combo-text">
+                    Sair
+                </span>
+            </a>
+        </div>
     </div>
 </nav>
 <section>
     <router-outlet></router-outlet>
 </section>
+<ng-container *ngIf="$isLoading | async">
+    <app-loading></app-loading>
+</ng-container>

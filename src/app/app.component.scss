@@ -1,6 +1,10 @@
 $color-dark: #212529;
 
 nav {
+    a {
+        color: white;
+    }
+
     a.navbar-brand {
         margin-left: 1rem;
     }
@@ -22,7 +26,6 @@ nav {
             border: none;
 
             a.dropdown-item {
-                color: white;
 
                 span.combo-text {
                     margin-left: 1rem;
@@ -34,6 +37,10 @@ nav {
                 background-color: white;
             }
         }
+    }
+
+    div.right-navbar-container {
+        margin-left: auto;
     }
 
 }

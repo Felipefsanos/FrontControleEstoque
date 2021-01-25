@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { SessaoExpiradaComponent } from './components/sessao-expirada/sessao-expirada.component';
 import { RouterModule, Routes } from '@angular/router';
 import { PaginaNaoEncontradaComponent } from './components/pagina-nao-encontrada/pagina-nao-encontrada.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 const routes: Routes = [
   {
@@ -13,12 +14,14 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [SessaoExpiradaComponent, PaginaNaoEncontradaComponent],
+  declarations: [SessaoExpiradaComponent, PaginaNaoEncontradaComponent, LoadingComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     FlexLayoutModule
   ],
-  exports: []
+  exports: [
+    LoadingComponent
+  ]
 })
 export class SharedModule { }

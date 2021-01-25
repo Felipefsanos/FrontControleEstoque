@@ -15,7 +15,6 @@ export class SessaoExpiradaComponent implements OnInit {
   }
 
   navigateLogin(): void {
-    debugger;
     this.router.navigate(['']);
   }
 

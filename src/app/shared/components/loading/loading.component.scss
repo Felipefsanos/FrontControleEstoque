@@ -1,0 +1,21 @@
+$light-gray-color: rgba(221,221,221,0.2);
+
+div.loading-container {
+    z-index: 999;
+    display: flex;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: $light-gray-color;
+    cursor: wait;
+
+    span {
+        margin: auto;
+
+        .fa-spinner {
+            color: gray;
+        }
+    }
+}

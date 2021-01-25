@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { TokenModel } from './../../models/login/token.model';
 import { Observable } from 'rxjs';
 import { LoginCommand } from './../../models/login/commands/login-command.model';
@@ -11,7 +12,7 @@ import { AES } from 'crypto-ts';
 })
 export class LoginService extends BaseService {
 
-  constructor(protected http: HttpClient) {
+  constructor(protected http: HttpClient, protected router: Router) {
     super(http);
   }
 
@@ -46,6 +47,11 @@ export class LoginService extends BaseService {
     }
 
     return false;
+  }
+
+  public logout(): void {
+    localStorage.clear();
+    this.router.navigate(['']);
   }
 
 }
