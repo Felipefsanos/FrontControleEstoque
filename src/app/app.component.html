@@ -1,5 +1,5 @@
 <nav *ngIf="showNavBar" class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand animate__animated animate__bounce" href="#">
+    <a class="navbar-brand animate__animated animate__bounce" [routerLink]="['/p/home']">
         <i class="fas fa-box-open"></i>
     </a>
     <button class="navbar-toggler" type="button" [attr.aria-expanded]="collapsed" data-target="#navbarSupportedContent"
@@ -18,7 +18,7 @@
                 </a>
                 <div ngbDropdownMenu aria-labelledby="navbarDropdown1"
                     class="dropdown-menu animate__animated animate__fadeInDown animate__faster">
-                    <a ngbDropdownItem href="#" (click)="$event.preventDefault()">
+                    <a ngbDropdownItem href="#" [routerLink]="['/p/novo-cliente']">
                         <span>
                             <i class="fas fa-user-plus"></i>
                         </span>

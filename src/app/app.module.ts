@@ -33,7 +33,9 @@ import { LocationStrategy, PathLocationStrategy } from '@angular/common';
       tapToDismiss: true,
       newestOnTop: true,
       progressBar: true,
-      progressAnimation: 'decreasing'
+      progressAnimation: 'increasing',
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
     }),
     FlexLayoutModule,
     NgbModule

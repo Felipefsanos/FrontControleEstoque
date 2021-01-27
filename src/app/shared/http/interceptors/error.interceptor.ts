@@ -28,15 +28,18 @@ export class ErrorInterceptor implements HttpInterceptor {
         }
 
         switch (error.status) {
-          case 500:
-            this.toastrService.error('Erro desconhecido.');
-            return throwError('Erro interno.');
           case 401:
             this.toastrService.error(errorTratado.mensagem);
+            return throwError(errorTratado.mensagem);
+          case 404:
+            this.toastrService.warning(errorTratado.mensagem);
             return throwError(errorTratado.mensagem);
           case 422:
             this.toastrService.warning(errorTratado.mensagem);
             return throwError(errorTratado.mensagem);
+          default:
+            this.toastrService.error('Erro desconhecido.');
+            return throwError('Erro interno.');
         }
       })
     );

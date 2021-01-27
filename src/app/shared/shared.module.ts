@@ -5,6 +5,8 @@ import { SessaoExpiradaComponent } from './components/sessao-expirada/sessao-exp
 import { RouterModule, Routes } from '@angular/router';
 import { PaginaNaoEncontradaComponent } from './components/pagina-nao-encontrada/pagina-nao-encontrada.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { FormularioClienteComponent } from './components/formulario-cliente/formulario-cliente.component';
+import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [
   {
@@ -14,14 +16,16 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [SessaoExpiradaComponent, PaginaNaoEncontradaComponent, LoadingComponent],
+  declarations: [SessaoExpiradaComponent, PaginaNaoEncontradaComponent, LoadingComponent, FormularioClienteComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    FlexLayoutModule
+    FlexLayoutModule,
+    NgbTooltipModule
   ],
   exports: [
-    LoadingComponent
+    LoadingComponent,
+    FormularioClienteComponent
   ]
 })
 export class SharedModule { }

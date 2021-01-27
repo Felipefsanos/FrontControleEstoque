@@ -1,8 +1,9 @@
 <div class="sidenav">
     <div class="login-main-text d-flex flex-column align-content-center justify-content-center">
-        <i class="fas fa-box-open fa-10x"></i>
+        <span fxLayout="row" fxLayoutAlign="center center">
+            <i class="fas fa-box-open fa-10x"></i>
+        </span>
         <h2>Controle de Estoque</h2>
-        <p>Realize login para ter acesso.</p>
     </div>
 </div>
 <div class="main">
@@ -10,6 +11,7 @@
         <div class="login-form">
             <form class="d-flex flex-column align-content-center justify-content-center needs-validation"
                 [formGroup]="formulario" (submit)="realizarLogin()" novalidate>
+                <h6 class="text-center">Realize login para ter acesso.</h6>
                 <div class="form-group mb-3 mx-3">
                     <input type="text" class="form-control"
                         [ngClass]="{ 'is-invalid' : !loginControl.valid && (loginControl.dirty || loginControl.touched), 'is-valid' :  loginControl.valid }"

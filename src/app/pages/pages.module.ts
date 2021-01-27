@@ -23,7 +23,8 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
+    NovoClienteComponent
   ],
   imports: [
     CommonModule,

@@ -18,12 +18,12 @@ export class LoginComponent implements OnInit {
   listaCanetas = [];
 
   constructor(private formBuilder: FormBuilder,
-              private loginService: LoginService,
-              private toastrService: ToastrService,
-              private router: Router) {
+    private loginService: LoginService,
+    private toastrService: ToastrService,
+    private router: Router) {
 
-                this.listaCanetas.push('');
-               }
+    this.listaCanetas.push('');
+  }
 
   ngOnInit(): void {
     this.construirFormulario();
@@ -42,11 +42,11 @@ export class LoginComponent implements OnInit {
     }
 
     this.loginService.login(this.formulario.value)
-    .subscribe((resp: TokenModel) => {
+      .subscribe((resp: TokenModel) => {
         this.loginService.saveToken(resp);
         this.toastrService.info('Usuário Logado');
         this.router.navigate(['p/home']);
-     });
+      });
 
   }
 

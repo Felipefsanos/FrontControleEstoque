@@ -1,0 +1,90 @@
+<form class="needs-validation">
+
+    <div class="mb-4" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="32px">
+        <div fxFlex="75">
+            <div class="form-floating">
+                <input type="text" class="form-control" id="nomeInput" placeholder="João da Silva">
+                <label for="nomeInput">Nome completo</label>
+            </div>
+        </div>
+        <div fxFlex="25">
+            <div class="form-floating">
+                <input type="text" class="form-control" id="cpfInput" placeholder="João da Silva">
+                <label for="cpfInput">CPF</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-4" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="32px">
+        <div class="form-floating" fxFill>
+            <input type="text" class="form-control" id="emailInput" placeholder="exemplo@exemplo.com">
+            <label for="emailInput">Email</label>
+        </div>
+    </div>
+
+    <div class="mb-4" fxLayout="row" fxLayoutAlign="start center">
+        <div fxFlex="15">
+            <div class="form-floating" fxFill>
+                <input type="text" class="form-control" id="cepInput" placeholder="exemplo@exemplo.com">
+                <label for="cepInput">CEP</label>
+            </div>
+            <div class="invalid-feedback">
+                Please provide a valid city.
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-4" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="32px">
+        <div fxFlex="60">
+            <div class="form-floating" fxFill>
+                <input type="text" class="form-control" id="logradouroInput" placeholder="exemplo@exemplo.com">
+                <label for="logradouroInput">Logradouro</label>
+            </div>
+        </div>
+        <div fxFlex="15">
+            <div class="form-floating" fxFill>
+                <input type="text" class="form-control" id="numeroInput" placeholder="exemplo@exemplo.com">
+                <label for="numeroInput">Número</label>
+            </div>
+        </div>
+        <div fxFlex="25">
+            <div class="form-floating" fxFill>
+                <input type="text" class="form-control" id="complementoInput" placeholder="exemplo@exemplo.com">
+                <label for="complementoInput">Complemento</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-4" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="32px">
+        <div fxFlex="40">
+            <div class="form-floating" fxFill>
+                <input type="text" class="form-control" id="bairroInput" placeholder="exemplo@exemplo.com">
+                <label for="bairroInput">Bairro</label>
+            </div>
+        </div>
+
+        <div fxFlex="40">
+            <div class="form-floating" fxFill>
+                <input type="text" class="form-control" id="cidadeInput" placeholder="exemplo@exemplo.com">
+                <label for="cidadeInput">Cidade</label>
+            </div>
+        </div>
+
+        <div fxFlex="20">
+            <div class="form-floating">
+                <select class="form-select" id="estadoSelect" aria-label="Floating label select example">
+                    <option selected>Selecione o estado</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+                <label for="estadoSelect">Estado</label>
+            </div>
+        </div>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="32px">
+        <button class="btn btn-danger" type="button">Cancelar</button>
+        <button class="btn btn-success" type="submit">Salvar</button>
+    </div>
+</form>
