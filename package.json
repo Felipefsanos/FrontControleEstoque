@@ -3,11 +3,12 @@
   "version": "11.1.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --host 0.0.0.0 --poll 1",
-    "build": "ng build",
+    "start": "node server",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "postinstall": "npm run build"
   },
   "private": true,
   "dependencies": {
@@ -28,9 +29,11 @@
     "animate.css": "^4.1.1",
     "bootstrap": "^5.0.0-beta1",
     "crypto-ts": "^1.0.2",
+    "express": "^4.17.1",
     "jquery": "^3.5.1",
     "ngx-mask": "^11.1.4",
     "ngx-toastr": "^13.2.0",
+    "path": "^0.12.7",
     "rxjs": "~6.5.4",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
