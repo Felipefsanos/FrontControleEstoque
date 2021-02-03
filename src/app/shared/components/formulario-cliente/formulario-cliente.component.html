@@ -1,13 +1,13 @@
 <form class="needs-validation">
 
-    <div class="mb-4" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="32px">
-        <div fxFlex="75">
+    <div class="mb-4" fxLayout="row wrap" fxLayout.sm="row wrap" fxLayout.xs="column" fxLayoutGap="1.5rem">
+        <div fxFlex fxFlex.sm="auto" fxFlex.xs="" >
             <div class="form-floating">
                 <input type="text" class="form-control" id="nomeInput" placeholder="João da Silva">
                 <label for="nomeInput">Nome completo</label>
             </div>
         </div>
-        <div fxFlex="25">
+        <div fxFlex.sm="initial" fxFlex.xs="noshirink" [ngClass.xs]="'widht-100'">
             <div class="form-floating">
                 <input type="text" class="form-control" id="cpfInput" placeholder="João da Silva">
                 <label for="cpfInput">CPF</label>
@@ -15,17 +15,19 @@
         </div>
     </div>
 
-    <div class="mb-4" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="32px">
+    <div class="mb-4" fxLayout="row wrap" fxLayoutGap="1.5rem">
         <div class="form-floating" fxFill>
             <input type="text" class="form-control" id="emailInput" placeholder="exemplo@exemplo.com">
             <label for="emailInput">Email</label>
         </div>
     </div>
 
-    <div class="mb-4" fxLayout="row" fxLayoutAlign="start center">
-        <div fxFlex="15">
+    <div class="mb-4" fxLayout="row wrap" fxLayoutGap="1.5rem">
+        <div fxFlex="initial" fxFlex.xs>
             <div class="form-floating" fxFill>
-                <input type="text" class="form-control" id="cepInput" placeholder="exemplo@exemplo.com">
+                <input #inputCEP type="text" class="form-control" id="cepInput" placeholder="exemplo@exemplo.com"
+                        mask="00000-000" 
+                        (blur)="buscarCep(inputCEP.value)">
                 <label for="cepInput">CEP</label>
             </div>
             <div class="invalid-feedback">
@@ -34,43 +36,43 @@
         </div>
     </div>
 
-    <div class="mb-4" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="32px">
-        <div fxFlex="60">
-            <div class="form-floating" fxFill>
+    <div class="mb-4" fxLayout="row wrap" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="1.5rem">
+        <div fxFlex="auto">
+            <div class="form-floating">
                 <input type="text" class="form-control" id="logradouroInput" placeholder="exemplo@exemplo.com">
                 <label for="logradouroInput">Logradouro</label>
             </div>
         </div>
-        <div fxFlex="15">
-            <div class="form-floating" fxFill>
+        <div fxFlex="initial">
+            <div class="form-floating">
                 <input type="text" class="form-control" id="numeroInput" placeholder="exemplo@exemplo.com">
                 <label for="numeroInput">Número</label>
             </div>
         </div>
-        <div fxFlex="25">
-            <div class="form-floating" fxFill>
+        <div fxFlex="initial">
+            <div class="form-floating">
                 <input type="text" class="form-control" id="complementoInput" placeholder="exemplo@exemplo.com">
                 <label for="complementoInput">Complemento</label>
             </div>
         </div>
     </div>
 
-    <div class="mb-4" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="32px">
-        <div fxFlex="40">
+    <div class="mb-4" fxLayout="row wrap" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="1.5rem">
+        <div fxFlex="auto">
             <div class="form-floating" fxFill>
                 <input type="text" class="form-control" id="bairroInput" placeholder="exemplo@exemplo.com">
                 <label for="bairroInput">Bairro</label>
             </div>
         </div>
 
-        <div fxFlex="40">
+        <div fxFlex="auto">
             <div class="form-floating" fxFill>
                 <input type="text" class="form-control" id="cidadeInput" placeholder="exemplo@exemplo.com">
                 <label for="cidadeInput">Cidade</label>
             </div>
         </div>
 
-        <div fxFlex="20">
+        <div fxFlex="initial">
             <div class="form-floating">
                 <select class="form-select" id="estadoSelect" aria-label="Floating label select example">
                     <option selected>Selecione o estado</option>
@@ -83,7 +85,7 @@
         </div>
     </div>
 
-    <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="32px">
+    <div fxLayout="row wrap" fxLayoutAlign="space-between center" fxLayoutGap="32px">
         <button class="btn btn-danger" type="button">Cancelar</button>
         <button class="btn btn-success" type="submit">Salvar</button>
     </div>

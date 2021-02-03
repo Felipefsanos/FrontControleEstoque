@@ -2,15 +2,21 @@
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
+@import url('https://fonts.googleapis.com/css2?family=Potta+One&family=Roboto:wght@500&display=swap');
 
 body, html {
     min-height:100%;
     position: relative;
     height: 100%;
+    font-family: 'Roboto', sans-serif;
 
     section.content-container-fluid{
         padding: 1rem;
         height: 94vh;
+    }
+
+    div.page-header {
+        margin: 1rem;
     }
 }
 

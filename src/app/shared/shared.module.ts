@@ -7,6 +7,7 @@ import { PaginaNaoEncontradaComponent } from './components/pagina-nao-encontrada
 import { LoadingComponent } from './components/loading/loading.component';
 import { FormularioClienteComponent } from './components/formulario-cliente/formulario-cliente.component';
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxMaskModule } from 'ngx-mask';
 
 const routes: Routes = [
   {
@@ -21,11 +22,13 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     FlexLayoutModule,
-    NgbTooltipModule
+    NgbTooltipModule,
+    NgxMaskModule.forRoot()
   ],
   exports: [
     LoadingComponent,
-    FormularioClienteComponent
+    FormularioClienteComponent,
+    NgxMaskModule
   ]
 })
 export class SharedModule { }
