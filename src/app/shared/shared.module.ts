@@ -8,6 +8,7 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { FormularioClienteComponent } from './components/formulario-cliente/formulario-cliente.component';
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxMaskModule } from 'ngx-mask';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -23,7 +24,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     FlexLayoutModule,
     NgbTooltipModule,
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
+    ReactiveFormsModule
   ],
   exports: [
     LoadingComponent,

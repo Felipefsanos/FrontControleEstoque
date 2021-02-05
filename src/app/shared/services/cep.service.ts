@@ -10,7 +10,7 @@ export class CepService {
 
   constructor(private http: HttpClient) { }
 
-  consultarCep(cep: number): Observable<Endereco> {
+  consultarCep(cep: number): Observable<Endereco | any> {
     return this.http.get<Endereco>(`https://viacep.com.br/ws/${cep}/json/`);
   }
 }

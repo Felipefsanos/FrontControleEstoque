@@ -1,92 +1,183 @@
-<form class="needs-validation">
+<form novalidate class="needs-validation" [formGroup]="formulario">
 
     <div class="mb-4" fxLayout="row wrap" fxLayout.sm="row wrap" fxLayout.xs="column" fxLayoutGap="1.5rem">
-        <div fxFlex fxFlex.sm="auto" fxFlex.xs="" >
+        <div fxFlex fxFlex.sm="auto" fxFlex.xs="">
             <div class="form-floating">
-                <input type="text" class="form-control" id="nomeInput" placeholder="João da Silva">
+                <input #nomeInput type="text" class="form-control" id="nomeInput" placeholder="João da Silva"
+                    formControlName="nome"
+                    [ngClass]="{'is-invalid': !this.formulario.get('nome').hasError('required') && this.formulario.get('nome').errors , 'is-valid': this.formulario.get('nome').valid}"
+                    (blur)="showRequiredError(this.formulario.get('nome'), nomeInput)">
                 <label for="nomeInput">Nome completo</label>
+                <div class="invalid-feedback" *ngIf="this.formulario.get('nome').hasError('required')">
+                    É obrigatório informar um nome.
+                </div>
             </div>
         </div>
         <div fxFlex.sm="initial" fxFlex.xs="noshirink" [ngClass.xs]="'widht-100'">
             <div class="form-floating">
-                <input type="text" class="form-control" id="cpfInput" placeholder="João da Silva">
-                <label for="cpfInput">CPF</label>
-            </div>
-        </div>
-    </div>
-
-    <div class="mb-4" fxLayout="row wrap" fxLayoutGap="1.5rem">
-        <div class="form-floating" fxFill>
-            <input type="text" class="form-control" id="emailInput" placeholder="exemplo@exemplo.com">
-            <label for="emailInput">Email</label>
-        </div>
-    </div>
-
-    <div class="mb-4" fxLayout="row wrap" fxLayoutGap="1.5rem">
-        <div fxFlex="initial" fxFlex.xs>
-            <div class="form-floating" fxFill>
-                <input #inputCEP type="text" class="form-control" id="cepInput" placeholder="exemplo@exemplo.com"
-                        mask="00000-000" 
-                        (blur)="buscarCep(inputCEP.value)">
-                <label for="cepInput">CEP</label>
-            </div>
-            <div class="invalid-feedback">
-                Please provide a valid city.
+                <input #cpfInput type="text" class="form-control" id="cpfInput" placeholder="João da Silva"
+                    mask="000.000.000-00||00.000.000/0000-00" [showMaskTyped]="true" formControlName="cpf"
+                    [ngClass]="{'is-invalid': !this.formulario.get('cpf').hasError('required') && this.formulario.get('cpf').errors, 'is-valid': this.formulario.get('cpf').valid}"
+                    (blur)="showRequiredError(this.formulario.get('cpf'), cpfInput)">
+                <label for="cpfInput">CPF / CNPJ</label>
+                <div class="invalid-feedback" *ngIf="this.formulario.get('cpf').hasError('required')">
+                    É obrigatório informar um CPF.
+                </div>
+                <div class="invalid-feedback" *ngIf="this.formulario.get('cpf').hasError('cpfNotValid')">
+                    Esse CPF é inválido e não existe.
+                </div>
+                <div class="invalid-feedback" *ngIf="this.formulario.get('cpf').hasError('mask')">
+                    CPF em formato incorreto.
+                </div>
             </div>
         </div>
     </div>
 
     <div class="mb-4" fxLayout="row wrap" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="1.5rem">
-        <div fxFlex="auto">
-            <div class="form-floating">
-                <input type="text" class="form-control" id="logradouroInput" placeholder="exemplo@exemplo.com">
-                <label for="logradouroInput">Logradouro</label>
+        <ng-container formArrayName="telefones">
+            <ng-container *ngFor="let telefone of telefones.controls; let i=index">
+                <div fxFlex.sm="initial" fxFlex.xs="noshirink" [ngClass.xs]="'widht-100'">
+                    <div class="form-floating">
+                        <input #telefoneInput type="text" class="form-control" id="telefoneInput" placeholder="João da Silva"
+                            mask="(00) 0000-0000||(00) 0 0000-0000" [showMaskTyped]="true" [formControlName]="i"
+                            [ngClass]="{'is-invalid': !this.telefones.controls[i].hasError('required') && this.telefones.controls[i].errors, 'is-valid': this.telefones.controls[i].valid}"
+                            (blur)="showRequiredError(this.telefones.controls[i], telefoneInput)">
+                        <label for="telefoneInput">Telefone</label>
+                        <div class="invalid-feedback" *ngIf="this.telefones.controls[i].hasError('required')">
+                            É obrigatório informar o Telefone.
+                        </div>
+                        <div class="invalid-feedback" *ngIf="this.telefones.controls[i].hasError('mask')">
+                            Telefone em formato incorreto.
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                <button type="button" class="btn btn-danger" placement="top" ngbTooltip="Remover um telefone"
+                    *ngIf="telefones.length > 1" (click)="removerTelefone()">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-success" placement="top" ngbTooltip="Adicionar um telefone"
+                    *ngIf="telefones.length < 3" (click)="adicionarTelefone()">
+                    <i class="fas fa-plus"></i>
+                </button>
             </div>
-        </div>
-        <div fxFlex="initial">
-            <div class="form-floating">
-                <input type="text" class="form-control" id="numeroInput" placeholder="exemplo@exemplo.com">
-                <label for="numeroInput">Número</label>
-            </div>
-        </div>
-        <div fxFlex="initial">
-            <div class="form-floating">
-                <input type="text" class="form-control" id="complementoInput" placeholder="exemplo@exemplo.com">
-                <label for="complementoInput">Complemento</label>
+        </ng-container>
+        <div fxFlex>
+            <div class="form-floating" fxFill>
+                <input type="text" class="form-control" id="emailInput" placeholder="exemplo@exemplo.com"
+                    formControlName="email"
+                    [ngClass]="{'is-invalid': this.formulario.get('email').hasError('email'), 'is-valid': !this.formulario.get('email').hasError('email') && this.formulario.get('email').value}">
+                <label for="emailInput">Email</label>
             </div>
         </div>
     </div>
 
-    <div class="mb-4" fxLayout="row wrap" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="1.5rem">
-        <div fxFlex="auto">
-            <div class="form-floating" fxFill>
-                <input type="text" class="form-control" id="bairroInput" placeholder="exemplo@exemplo.com">
-                <label for="bairroInput">Bairro</label>
+    <ng-container formGroupName="endereco">
+        <div class="mb-4" fxLayout="row wrap" fxLayoutGap="1.5rem">
+            <div fxFlex="initial" fxFlex.xs>
+                <div class="form-floating" fxFill>
+                    <input #inputCEP type="text" class="form-control is-invalid" id="cepInput"
+                        placeholder="exemplo@exemplo.com" mask="00000-000" [showMaskTyped]="true"
+                        (blur)="buscarCep(inputCEP.value)" formControlName="CEP"
+                        (blur)="showRequiredError(this.endereco.get('CEP'), inputCEP)"
+                        [ngClass]="{'is-invalid': !this.endereco.get('CEP').hasError('required') && this.endereco.get('CEP').errors , 'is-valid': this.endereco.get('CEP').valid}">
+                    <label for="cepInput">CEP</label>
+                    <div class="invalid-feedback" *ngIf="this.endereco.get('CEP').hasError('required')">
+                        É obrigatório informar um CEP.
+                    </div>
+                    <div class="invalid-feedback" *ngIf="this.endereco.get('CEP').hasError('mask')">
+                        CEP em formato inválido.
+                    </div>
+                    <div class="invalid-feedback" *ngIf="this.endereco.get('CEP').hasError('cepInvalido')">
+                        CEP inválido.
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div fxFlex="auto">
-            <div class="form-floating" fxFill>
-                <input type="text" class="form-control" id="cidadeInput" placeholder="exemplo@exemplo.com">
-                <label for="cidadeInput">Cidade</label>
+        <div class="mb-4" fxLayout="row wrap" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="1.5rem">
+            <div fxFlex="auto">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="logradouroInput" placeholder="exemplo@exemplo.com"
+                        formControlName="logradouro">
+                    <label for="logradouroInput">Logradouro</label>
+                </div>
+            </div>
+            <div fxFlex="initial">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="numeroInput" placeholder="exemplo@exemplo.com"
+                        formControlName="numero">
+                    <label for="numeroInput">Número</label>
+                </div>
+            </div>
+            <div fxFlex="initial">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="complementoInput" placeholder="exemplo@exemplo.com"
+                        formControlName="complemento">
+                    <label for="complementoInput">Complemento</label>
+                </div>
             </div>
         </div>
 
-        <div fxFlex="initial">
-            <div class="form-floating">
-                <select class="form-select" id="estadoSelect" aria-label="Floating label select example">
-                    <option selected>Selecione o estado</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
-                <label for="estadoSelect">Estado</label>
+        <div class="mb-4" fxLayout="row wrap" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="1.5rem">
+            <div fxFlex="auto">
+                <div class="form-floating" fxFill>
+                    <input type="text" class="form-control" id="bairroInput" placeholder="exemplo@exemplo.com"
+                        formControlName="bairro">
+                    <label for="bairroInput">Bairro</label>
+                </div>
+            </div>
+
+            <div fxFlex="auto">
+                <div class="form-floating" fxFill>
+                    <input type="text" class="form-control" id="cidadeInput" placeholder="exemplo@exemplo.com"
+                        formControlName="cidade">
+                    <label for="cidadeInput">Cidade</label>
+                </div>
+            </div>
+
+            <div fxFlex="10">
+                <div class="form-floating">
+                    <select class="form-select" id="estadoSelect" aria-label="Floating label select example"
+                        formControlName="estado">
+                        <option value="AC">AC</option>
+                        <option value="AL">AL</option>
+                        <option value="AP">AP</option>
+                        <option value="AM">AM</option>
+                        <option value="BA">BA</option>
+                        <option value="CE">CE</option>
+                        <option value="DF">DF</option>
+                        <option value="ES">ES</option>
+                        <option value="GO">GO</option>
+                        <option value="MA">MA</option>
+                        <option value="MT">MT</option>
+                        <option value="MS">MS</option>
+                        <option value="MG">MG</option>
+                        <option value="PA">PA</option>
+                        <option value="PB">PB</option>
+                        <option value="PR">PR</option>
+                        <option value="PE">PE</option>
+                        <option value="PI">PI</option>
+                        <option value="RJ">RJ</option>
+                        <option value="RN">RN</option>
+                        <option value="RS">RS</option>
+                        <option value="RO">RO</option>
+                        <option value="RR">RR</option>
+                        <option value="SC">SC</option>
+                        <option value="SP">SP</option>
+                        <option value="SE">SE</option>
+                        <option value="TO">TO</option>
+                    </select>
+                    <label for="estadoSelect">Estado</label>
+                </div>
             </div>
         </div>
-    </div>
+    </ng-container>
+
 
     <div fxLayout="row wrap" fxLayoutAlign="space-between center" fxLayoutGap="32px">
-        <button class="btn btn-danger" type="button">Cancelar</button>
-        <button class="btn btn-success" type="submit">Salvar</button>
+        <button class="btn btn-danger" type="button" (click)="showFormValue()">Cancelar</button>
+        <button class="btn btn-success" type="submit" [disabled]="formulario.invalid">Salvar</button>
     </div>
 </form>
